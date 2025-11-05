@@ -145,7 +145,7 @@ const DailyEntryForm: React.FC = () => {
           fullWidth
         />
         <TextField
-          label="Sales Today"
+          label="Sale Today"
           name="salesToday"
           type="number"
           value={formData.salesToday}
