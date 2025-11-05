@@ -1,0 +1,204 @@
+/* ===== Global CSS Variables (Design Tokens) ===== */
+:root {
+  --color-primary: #3763ff;
+  --color-primary-hover: #2543c3;
+  --color-primary-shadow: #e8f0fe;
+  --color-accent: #13c39c;
+  --color-bg: #f7f8fa;
+  --color-bg-card: #fff;
+  --color-bg-navbar: #fff;
+  --color-border: #e5e7eb;
+  --color-text: #1f2937;
+  --color-text-soft: #6b7280;
+  --color-text-inverse: #fff;
+  --border-radius: 10px;
+  --shadow-md: 0 2px 8px 0 rgba(16,30,54,0.06);
+  --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+  --transition: 0.18s cubic-bezier(.4,0,.2,1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #13141a;
+    --color-bg-card: #181a20;
+    --color-bg-navbar: #191a23;
+    --color-primary-shadow: #122056;
+    --color-border: #23263a;
+    --color-text: #f6f7fa;
+    --color-text-soft: #a3adc2;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-family: var(--font-main);
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  margin: 0;
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  font-size: 1rem;
+}
+
+/* Layout */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+h4 { font-size: 1.5rem; }
+h5 { font-size: 1.25rem; }
+h6 { font-size: 1rem; }
+
+p {
+  margin-bottom: 1rem;
+}
+
+a {
+  color: #1976d2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+button, .btn {
+  display: inline-block;
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+button:hover, .btn:hover {
+  background: #1565c0;
+}
+
+/* Forms */
+input, select, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+/* Utility classes */
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 1.5rem; }
+.mt-4 { margin-top: 2rem; }
+
+.mb-1 { margin-bottom: 0.5rem; }
+.mb-2 { margin-bottom: 1rem; }
+.mb-3 { margin-bottom: 1.5rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+/* Utility classes */
+.responsive-grid {
+  display: grid;
+  gap: 1.4rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) {
+  .responsive-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 980px) {
+  .responsive-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+/* Modern Card Form Styles */
+.modern-card-form {
+  background: var(--color-bg-card);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-radius);
+  padding: 2rem 2rem 1.7rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 380px;
+  margin: 1.7rem auto 0 auto;
+  border: 1px solid var(--color-border);
+}
+.modern-card-form label {
+  text-align: left;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text);
+  letter-spacing: 0.01em;
+}
+.modern-card-form input,
+.modern-card-form select,
+.modern-card-form textarea {
+  margin-top: 0.32rem;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: 1rem;
+  transition: border-color var(--transition), background var(--transition), color var(--transition);
+}
+.modern-card-form input:focus,
+.modern-card-form select:focus,
+.modern-card-form textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  background: var(--color-primary-shadow);
+}
+.modern-card-form button[type=submit] {
+  margin-top: 0.66rem;
+}
