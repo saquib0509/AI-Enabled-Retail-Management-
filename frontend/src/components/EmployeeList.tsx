@@ -281,7 +281,7 @@ const EmployeeList: React.FC<EmployeeListProps> = ({ refresh, onEdit }) => {
                     <Button
                       size="small"
                       startIcon={<EditIcon />}
-                      onClick={() => onEdit?.(emp)}
+                      onClick={() => onEdit?.(emp.id)}
                       sx={{ mr: 1, textTransform: "none" }}
                     >
                       Edit

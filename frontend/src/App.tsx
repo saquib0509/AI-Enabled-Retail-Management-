@@ -6,13 +6,8 @@ import Employees from "./pages/Employees";
 import Products from "./pages/Products";
 import Settings from "./pages/Settings";
 import Challans from "./pages/Challans";
+import Reports from "./pages/Reports";
 
-const Reports = () => (
-  <div className="container mt-4 mb-4">
-    <h1>Reports</h1>
-    <p>Reports dashboard coming soon...</p>
-  </div>
-);
 
 
 const App = () => {

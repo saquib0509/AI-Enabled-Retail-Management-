@@ -1,10 +1,8 @@
 package com.ro.petrol_pump_ai.repository;
 
 import com.ro.petrol_pump_ai.entity.Attendance;
-import com.ro.petrol_pump_ai.entity.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -12,9 +10,15 @@ import java.util.Optional;
 @Repository
 public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
     
-    Optional<Attendance> findByEmployeeAndAttendanceDate(Employee employee, LocalDate date);
+    // Find attendance for a specific employee on a specific date
+    Optional<Attendance> findByEmployeeIdAndAttendanceDate(Long employeeId, LocalDate attendanceDate);
     
-    List<Attendance> findByEmployeeAndAttendanceDateBetween(Employee employee, LocalDate startDate, LocalDate endDate);
+    // Find all attendance for a specific date
+    List<Attendance> findByAttendanceDate(LocalDate attendanceDate);
     
-    List<Attendance> findByAttendanceDate(LocalDate date);
+    // Find attendance for employee within date range
+    List<Attendance> findByEmployeeIdAndAttendanceDateBetween(Long employeeId, LocalDate startDate, LocalDate endDate);
+    
+    // Find all attendance within date range
+    List<Attendance> findByAttendanceDateBetween(LocalDate startDate, LocalDate endDate);
 }

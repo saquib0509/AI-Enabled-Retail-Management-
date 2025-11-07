@@ -11,6 +11,8 @@ import {
   InputLabel,
   FormControl,
   Alert,
+  Divider,
+  Stack,
 } from "@mui/material";
 import api from "../services/api";
 
@@ -63,14 +65,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-
     if (!formData.name.trim()) newErrors.name = "Name is required";
     if (!formData.phone.trim()) newErrors.phone = "Phone is required";
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    if (!formData.email.includes("@"))
-      newErrors.email = "Invalid email format";
+    if (!formData.email.includes("@")) newErrors.email = "Invalid email format";
     if (!formData.role) newErrors.role = "Role is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -80,84 +79,59 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
   ) => {
     const { name, value } = e.target;
     if (!name) return;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
-    // Clear error when user starts typing
+    setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
+  };
+
+  const handleCancelEdit = () => {
+    setFormData({
+      name: "",
+      phone: "",
+      email: "",
+      role: "Attendant",
+      status: "Active",
+    });
+    setSuccessMessage("");
   };
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSuccessMessage("");
 
-    if (!validateForm()) {
-      return;
-    }
-
+    if (!validateForm()) return;
     setLoading(true);
 
-    if (editingId) {
-      // Update employee
-      api
-        .put(`/employees/${editingId}`, formData)
-        .then(() => {
-          setSuccessMessage("Employee updated successfully!");
-          setFormData({
-            name: "",
-            phone: "",
-            email: "",
-            role: "Attendant",
-            status: "Active",
-          });
-          setTimeout(() => {
-            onSuccess?.();
-          }, 1500);
+    const request = editingId
+      ? api.put(`/employees/${editingId}`, formData)
+      : api.post("/employees", formData);
+
+    request
+      .then(() => {
+        setSuccessMessage(
+          editingId
+            ? "Employee updated successfully!"
+            : "Employee created successfully!"
+        );
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          role: "Attendant",
+          status: "Active",
+        });
+        setTimeout(() => onSuccess?.(), 1500);
+      })
+      .catch((err) =>
+        setErrors({
+          submit:
+            err.response?.data?.error ||
+            err.message ||
+            "Failed to save employee",
         })
-        .catch((err) => {
-          setErrors({
-            submit:
-              err.response?.data?.error ||
-              err.message ||
-              "Failed to update employee",
-          });
-        })
-        .finally(() => setLoading(false));
-    } else {
-      // Create new employee
-      api
-        .post("/employees", formData)
-        .then(() => {
-          setSuccessMessage("Employee created successfully!");
-          setFormData({
-            name: "",
-            phone: "",
-            email: "",
-            role: "Attendant",
-            status: "Active",
-          });
-          setTimeout(() => {
-            onSuccess?.();
-          }, 1500);
-        })
-        .catch((err) => {
-          setErrors({
-            submit:
-              err.response?.data?.error ||
-              err.message ||
-              "Failed to create employee",
-          });
-        })
-        .finally(() => setLoading(false));
-    }
+      )
+      .finally(() => setLoading(false));
   };
 
   return (
@@ -165,7 +139,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
       elevation={4}
       sx={{
         p: 4,
-        maxWidth: 800,
+        maxWidth: "100%",
         mx: "auto",
         mt: 3,
         borderRadius: 3,
@@ -173,6 +147,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
           theme.palette.mode === "dark"
             ? "linear-gradient(145deg, #1e1e1e, #2c2c2c)"
             : "linear-gradient(145deg, #fafafa, #ffffff)",
+        boxShadow: "0px 3px 10px rgba(0,0,0,0.08)",
       }}
     >
       <Typography
@@ -184,21 +159,23 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
         {editingId ? "Edit Employee" : "Add New Employee"}
       </Typography>
 
+      <Divider sx={{ my: 2 }} />
+
       {successMessage && (
         <Alert severity="success" sx={{ mb: 2 }}>
           {successMessage}
         </Alert>
       )}
-
       {errors.submit && (
         <Alert severity="error" sx={{ mb: 2 }}>
           {errors.submit}
         </Alert>
       )}
 
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
+      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
+        {/* ✅ Expanded Single Row Layout */}
+        <Grid container spacing={2} alignItems="center">
+          <Grid item xs={12} md={2.4}>
             <TextField
               label="Name"
               name="name"
@@ -208,11 +185,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
               helperText={errors.name}
               required
               fullWidth
-              placeholder="Enter employee name"
+              placeholder="Enter name"
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={2.4}>
             <TextField
               label="Phone"
               name="phone"
@@ -223,11 +200,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
               helperText={errors.phone}
               required
               fullWidth
-              placeholder="Enter phone number"
+              placeholder="Phone number"
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={2.4}>
             <TextField
               label="Email"
               name="email"
@@ -238,11 +215,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
               helperText={errors.email}
               required
               fullWidth
-              placeholder="Enter email address"
+              placeholder="Email address"
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={2.4}>
             <FormControl fullWidth required error={!!errors.role}>
               <InputLabel>Role</InputLabel>
               <Select
@@ -260,7 +237,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
             </FormControl>
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} md={2.4}>
             <FormControl fullWidth>
               <InputLabel>Status</InputLabel>
               <Select
@@ -274,22 +251,23 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
               </Select>
             </FormControl>
           </Grid>
+        </Grid>
 
-          <Grid item xs={12}>
+        {/* ✅ Row 2 - Buttons */}
+        <Box textAlign="center" mt={4}>
+          <Stack direction="row" spacing={2} justifyContent="center">
             <Button
               type="submit"
               variant="contained"
               color="primary"
               disabled={loading}
               sx={{
-                mt: 2,
                 py: 1.2,
+                px: 6,
                 fontWeight: 600,
                 borderRadius: 2,
-                letterSpacing: 0.5,
                 textTransform: "none",
                 boxShadow: 3,
-                width: "100%",
               }}
             >
               {loading
@@ -300,8 +278,25 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
                 ? "Update Employee"
                 : "Create Employee"}
             </Button>
-          </Grid>
-        </Grid>
+
+            {editingId && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleCancelEdit}
+                sx={{
+                  py: 1.2,
+                  px: 5,
+                  fontWeight: 600,
+                  borderRadius: 2,
+                  textTransform: "none",
+                }}
+              >
+                Cancel Edit
+              </Button>
+            )}
+          </Stack>
+        </Box>
       </Box>
     </Paper>
   );

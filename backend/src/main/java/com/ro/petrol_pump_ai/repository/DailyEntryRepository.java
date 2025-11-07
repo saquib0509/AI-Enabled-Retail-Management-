@@ -21,4 +21,6 @@ public interface DailyEntryRepository extends JpaRepository<DailyEntry, Long> {
     List<DailyEntry> findByProductOrderByEntryDateDesc(Product product);
     
     Optional<DailyEntry> findByEntryDateAndProduct(LocalDate entryDate, Product product);
+
+    List<DailyEntry> findByEntryDateBetween(LocalDate startDate, LocalDate endDate);
 }

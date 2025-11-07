@@ -34,7 +34,7 @@ public class Challan {
     @Column
     private String vendorName;
     
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String challanNumber;
     
     @Column(columnDefinition = "TEXT")
