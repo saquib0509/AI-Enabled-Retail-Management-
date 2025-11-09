@@ -257,7 +257,7 @@ const EmployeeSalary: React.FC = () => {
       {salaryRecords.length < employees.length && (
         <Paper sx={{ p: 2, mb: 2, backgroundColor: "#e3f2fd" }}>
           <Typography variant="subtitle2" sx={{ mb: 2 }}>
-            ⚡ Generate salary for remaining employees:
+            Generate salary for remaining employees:
           </Typography>
           <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
             {employees

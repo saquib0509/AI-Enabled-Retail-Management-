@@ -40,7 +40,7 @@ public class PayrollReportService {
         report.put("salaryData", salaryData);
 
         if (pendingCount > 0) {
-            report.put("aiAlert", "⚠️ " + pendingCount + " pending salary payments. Process immediately!");
+            report.put("aiAlert", pendingCount + " pending salary payments. Process immediately!");
         }
 
         return report;

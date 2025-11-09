@@ -173,7 +173,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
       )}
 
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-        {/* ✅ Expanded Single Row Layout */}
+        {/* Expanded Single Row Layout */}
         <Grid container spacing={2} alignItems="center">
           <Grid item xs={12} md={2.4}>
             <TextField
@@ -253,7 +253,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({ editingId, onSuccess }) => 
           </Grid>
         </Grid>
 
-        {/* ✅ Row 2 - Buttons */}
+        {/* Row 2 - Buttons */}
         <Box textAlign="center" mt={4}>
           <Stack direction="row" spacing={2} justifyContent="center">
             <Button

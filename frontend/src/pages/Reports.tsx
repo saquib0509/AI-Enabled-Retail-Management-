@@ -38,17 +38,17 @@ const Reports: FC = () => {
   return (
     <Box sx={{ p: 3 }}>
       <Typography variant="h4" fontWeight={800} color="primary.main" sx={{ mb: 3 }}>
-        📊 AI-Powered Reports & Analytics
+        AI-Powered Reports & Analytics
       </Typography>
 
       <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)} sx={{ mb: 3 }}>
-        <Tab label="📈 Daily Sales" id="tab-0" aria-controls="tabpanel-0" />
-        <Tab label="📅 Monthly Performance" id="tab-1" aria-controls="tabpanel-1" />
-        <Tab label="📦 Stock Movement" id="tab-2" aria-controls="tabpanel-2" />
-        <Tab label="💰 Price Trend" id="tab-3" aria-controls="tabpanel-3" />
-        <Tab label="💹 Revenue vs Expense" id="tab-4" aria-controls="tabpanel-4" />
-        <Tab label="👥 Employee Attendance" id="tab-5" aria-controls="tabpanel-5" />
-        <Tab label="💵 Payroll" id="tab-6" aria-controls="tabpanel-6" />
+        <Tab label="Daily Sales" id="tab-0" aria-controls="tabpanel-0" />
+        <Tab label="Monthly Performance" id="tab-1" aria-controls="tabpanel-1" />
+        <Tab label="Stock Movement" id="tab-2" aria-controls="tabpanel-2" />
+        <Tab label="Price Trend" id="tab-3" aria-controls="tabpanel-3" />
+        <Tab label="Revenue vs Expense" id="tab-4" aria-controls="tabpanel-4" />
+        <Tab label="Employee Attendance" id="tab-5" aria-controls="tabpanel-5" />
+        <Tab label="Payroll" id="tab-6" aria-controls="tabpanel-6" />
       </Tabs>
 
       <TabPanel value={tabValue} index={0}>

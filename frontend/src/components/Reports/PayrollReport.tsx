@@ -33,7 +33,7 @@ const PayrollReport: FC = () => {
         <>
           {report.aiAlert && (
             <Alert severity="error" sx={{ mb: 3 }}>
-              ⚠️ {report.aiAlert}
+              {report.aiAlert}
             </Alert>
           )}
 
