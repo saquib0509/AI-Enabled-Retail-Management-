@@ -1,8 +1,6 @@
-An AI-powered SaaS platform designed for automated management of petrol pump retail outlets. The system streamlines operations through intelligent employee management, real-time attendance tracking, salary automation, inventory management, and AI-driven analytics.
-
 # PetrolPump AI
 
-A comprehensive **SaaS solution** for petrol pump management with **AI-powered document processing, real-time inventory tracking, employee management, and advanced reporting**.
+An AI-powered SaaS platform designed for automated management of petrol pump retail outlets. The system streamlines operations through intelligent employee management, real-time attendance tracking, salary automation, inventory management, and AI-driven analytics.
 
 ---
 
