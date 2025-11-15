@@ -2,6 +2,9 @@
 
 An AI-powered SaaS platform designed for automated management of petrol pump retail outlets. The system streamlines operations through intelligent employee management, real-time attendance tracking, salary automation, inventory management, and AI-driven analytics.
 
+
+https://youtu.be/6Xa-jvLw4qA?si=IE5gV4_HQttrLetv
+
 ---
 
 ## Features
