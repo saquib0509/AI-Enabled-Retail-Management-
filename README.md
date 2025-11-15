@@ -1,11 +1,16 @@
-# PetrolPump AI
+# Fuel Station
 
-An AI-powered SaaS platform designed for automated management of petrol pump retail outlets. The system streamlines operations through intelligent employee management, real-time attendance tracking, salary automation, inventory management, and AI-driven analytics.
+An AI-powered SaaS platform designed for automated management of Fuel Station retail outlets. The system streamlines operations through intelligent employee management, real-time attendance tracking, salary automation, inventory management, and AI-driven analytics.
 
 
 https://youtu.be/6Xa-jvLw4qA?si=IE5gV4_HQttrLetv
 
 ---
+
+<img width="480" height="720" alt="Screenshot 2025-11-15 163519" src="https://github.com/user-attachments/assets/bcf99780-cd94-4e37-9089-b7dc5eaa42b4" />
+
+<img width="480" height="720" alt="Screenshot 2025-11-15 163943" src="https://github.com/user-attachments/assets/c344970e-ac23-4e5f-88a9-a75c8c737a54" />
+
 
 ## Features
 
